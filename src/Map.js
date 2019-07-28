@@ -1,6 +1,7 @@
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import React, {Component} from 'react'
 import {View, StyleSheet} from 'react-native'
+import LinearGradient from 'react-native-linear-gradient';
 
 
 const styles = StyleSheet.create({
@@ -17,6 +18,20 @@ const styles = StyleSheet.create({
 });
 
 export default class Map extends Component {
+    static navigationOptions = ({ navigation }) => ({
+        headerStyle: {
+          backgroundColor: "transparent",
+          color: "transparent",
+          borderBottomWidth: 0,
+          shadowOpacity: 0,
+            shadowOffset: {
+              height: 0
+            },
+          shadowRadius: 0,
+          elevation: 0
+        }
+      })
+    
   render() {
     return(
       <View style={styles.container}>

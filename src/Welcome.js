@@ -69,7 +69,7 @@ export default class Welcome extends Component {
             <Text style={styles.spacebookText}>GoSearch</Text>
             <Text style={styles.spacebookTextSuperscript}>TM</Text>
           </View>
-          <Text style={styles.conquerTheStarsText}>Find Out Where {"\n"} Your Intreset Can Lead You</Text>
+          <Text style={styles.conquerTheStarsText}>Find Out Where {"\n"} Your Interest Can Lead You</Text>
           <View
             style={{
               flex: 1,
