@@ -45,7 +45,6 @@ export default class LogIn extends Component {
   }
   render() {
     return(
-      <LinearGradient style={{flex: 1}} colors={["rgb(45, 45, 45)", "rgb(90, 184, 138)"]}>
         <View
           style={styles.loginView}>
           <Text
@@ -83,7 +82,6 @@ export default class LogIn extends Component {
               style={styles.forgotYourPasswordButtonText}>Forgot your password?</Text>
           </TouchableOpacity>
         </View>
-      </LinearGradient>
     )
   }
 }
@@ -108,6 +106,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     alignItems: "center",
+    backgroundColor: '#1d2e27'
   },
   loginViewLinearGradient: {
     flex: 1,

@@ -1,20 +1,29 @@
 import React, {Component} from 'react';
-import { Image, Text, TouchableOpacity, View, StyleSheet, TextInput } from "react-native"
+import { Image, Text, TouchableOpacity, View, StyleSheet, TextInput, Icon } from "react-native"
 import LinearGradient from 'react-native-linear-gradient';
 
-export default class LogIn extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    header: null,
-  })
+export default class Search extends Component {
 
-  onSearchPressed = () => {
+    static navigationOptions = {
+        header: null
+      };
 
-    const { navigate } = this.props.navigation
+    constructor(props){
+        super(props)
+        this.state = {
+          hashtag: '',
+          hash: '',
+          showTheThing: false,
+        }
+    }
 
-    navigate("Map")
-  }
-
+    _addPress() {
+        this.setState({showTheThing: true})
+     }
+    
+      
   render() {
+    const {navigate} = this.props.navigation;
     return(
       <LinearGradient style={{flex: 1}} colors={["rgb(90, 184, 138)", "rgb(45, 45, 45)"]}>
         <View
@@ -26,12 +35,45 @@ export default class LogIn extends Component {
           <View
             style={styles.loginFieldsView}>
             <TextInput
-              autoCorrect={false}
-              placeholder="Search your interest..."
-              secureTextEntry={true}
-              style={styles.yourPasswordTextInput}/>
+                autoCorrect={false}
+                //Search engine for ideas
+                placeholder="Enter number of locations you want"
+                style={styles.yourPasswordTextInput}
+                returnKeyLabel = {"next"}
+                onChangeText={(text) => this.setState({hashtag:text})}/>
+          </View>
+          <Text style={styles.justText2}>Enter down below topics</Text>
+          <View
+            style={styles.loginFieldsView}>
+            <TextInput
+                autoCorrect={false}
+                placeholder="Ex: developer"
+                style={styles.yourPasswordTextInput}
+                returnKeyLabel = {"next"}
+                onChangeText={(text) => this.setState({hashtag:text})}/>
+          </View>
+            { this.state.showTheThing && 
+                <View
+                style={styles.loginFieldsView}>
+                <TextInput
+                    autoCorrect={false}
+                    placeholder="Ex: photography"
+                    style={styles.yourPasswordTextInput}
+                    returnKeyLabel = {"next"}
+                    onChangeText={(text) => this.setState({hashtag:text})}/>
+              </View>
+            }
+          <View style={{alignSelf: "stretch",}}>
+            <TouchableOpacity 
+                onPress={() => this._addPress()}
+                style={styles.loginButton2}>
+                <Text style={styles.loginButtonText}>Add more hashtags</Text>
+            </TouchableOpacity>
+            <Text style={styles.loginButtonText}>{this.state.hash}</Text>
+          </View>
+          <View style={{alignSelf: "stretch",}}>
             <TouchableOpacity
-                onPress={this.onSearchPressed}
+                onPress={() => navigate('MapGo')}
                 style={styles.loginButton}>
                 <Text style={styles.loginButtonText}>Search</Text>
             </TouchableOpacity>
@@ -44,6 +86,15 @@ export default class LogIn extends Component {
 
 
 const styles = StyleSheet.create({
+    passwordContainer: {
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderColor: '#000',
+        paddingBottom: 10,
+      },
+      inputStyle: {
+        flex: 1,
+      },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -91,10 +142,10 @@ const styles = StyleSheet.create({
     shadowRadius: 25,
     shadowOpacity: 1,
     alignSelf: "stretch",
-    height: 50,
+    height: 42,
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 40,
+    marginTop: 10,
   },
   yourNicknameTextInput: {
     color: "black",
@@ -128,7 +179,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginTop: 8,
   },
-  loginButton: {
+  loginButton2: {
     backgroundColor: "white",
     borderRadius: 8,
     shadowColor: "rgba(0, 0, 0, 0.2)",
@@ -144,9 +195,33 @@ const styles = StyleSheet.create({
     marginRight: 35,
     marginTop: 50,
   },
+  loginButton: {
+    backgroundColor: "white",
+    borderRadius: 8,
+    shadowColor: "rgba(0, 0, 0, 0.2)",
+    shadowRadius: 25,
+    shadowOpacity: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 0,
+    alignSelf: "stretch",
+    height: 45,
+    marginLeft: 35,
+    marginRight: 35,
+  },
   loginButtonText: {
     color: "rgb(90, 184, 138)",
     fontSize: 16,
+    fontStyle: "normal",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  justText2: {
+    color: "#000000",
+    fontSize: 22,
+    marginTop: 5,
+    marginBottom: 5,
     fontStyle: "normal",
     fontWeight: "bold",
     textAlign: "center",
